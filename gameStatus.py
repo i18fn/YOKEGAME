@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import *
 
-def gameover_draw(self, screen):
+def gameover_draw(screen):
     '''ゲームオーバー画面を表示'''
     screen.fill((255, 255, 255)) #画面を白で塗りつぶす
     #フォントの作成
@@ -18,7 +18,7 @@ def gameover_draw(self, screen):
     screen.blit(COIN, (250, 170))
 
     
-def gametitle_draw(self, screen, cursor):
+def gametitle_draw(screen, cursor):
     '''タイトル画面の描画'''
     screen.fill((255, 255, 255)) #画面を白で塗りつぶす
     #フォントの作成

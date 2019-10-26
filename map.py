@@ -5,7 +5,7 @@ import os
 class Block(pygame.sprite.Sprite):
     def __init__(self, pos, filePath, size):
         pygame.sprite.Sprite.__init__(self, self.containers)
-        self.image = dataLoad.load_image("Data/Block.bmp")
+        self.image = dataLoad.load_image(filePath)
         self.rect = self.image.get_rect()
         self.rect.topleft = pos
 
@@ -43,9 +43,11 @@ class Map:
         for i in range(self.row):
             for j in range(self.col):
                 if map[i][j] == '1':
-                    Block((j*self.GS, i*self.GS), "Data/Block.bmp", 32)
-                #if map[i][j] == '2':
-                #if map[i][j] == '3':
+                    Block((j*self.GS, i*self.GS), "Data/Block1.bmp", 32)
+                if map[i][j] == '2':
+                    Block((j*self.GS, i*self.GS), "Data/Block2.bmp", 32)
+                if map[i][j] == '3':
+                    Block((j*self.GS, i*self.GS), "Data/Block3.bmp", 32)
                 #if map[i][j] == '4':
                 #if map[i][j] == '5':     
     

@@ -9,7 +9,7 @@ import gun
 import sys
 import os
 
-SCR_RECT = Rect(0, 0, 1088, 612)
+SCR_RECT = Rect(0, 0, 1440, 810)
 TITLE, PLAY, GAMEOVER, CLEAR = (0, 1, 2, 3)
 
 class Main:
@@ -24,6 +24,7 @@ class Main:
         while True:
             clock.tick(60) #clockオブジェクトの更新
             self.draw(screen)
+            self.stateChange()
             self.map.update(screen, self.mine)
             self.key_handler()
             pygame.display.update() #画面の作成
@@ -75,9 +76,9 @@ class Main:
                 if event.type == KEYDOWN:
                     pass
 
-    def clearorgameover(self):
+    def stateChange(self):
         '''条件を満たしていれば、ゲーム状態を変更する'''
-        if self.mine.rect.y > 1000:
+        if self.mine.rect.y > 1500:
             self.game_state = GAMEOVER
 
     def init_mixer(self):
