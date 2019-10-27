@@ -4,18 +4,16 @@ from pygame.locals import *
 def gameover_draw(screen):
     '''ゲームオーバー画面を表示'''
     screen.fill((255, 255, 255)) #画面を白で塗りつぶす
+    print("A")
     #フォントの作成
-    gameoverfont = pygame.font.SysFont(None, 80)
-    myfont = pygame.font.SysFont(None, 40)
+    gameoverfont = pygame.font.SysFont(None, 180)
+    myfont = pygame.font.SysFont(None, 140)
     #文字の画像(Surface)の作成
     GAME_OVER = gameoverfont.render("GAME OVER", True, (0, 0, 0))
     PUSH_SPACE_KEY = myfont.render("PUSH SPACE KEY", True, (0, 0, 0))
-    coin = "COIN : " + str(self.coin)
-    COIN = myfont.render(coin, True, (0, 0, 0))
     #文字の描画
-    screen.blit(GAME_OVER, (140, 110))
+    screen.blit(GAME_OVER, (600, 400))
     screen.blit(PUSH_SPACE_KEY, (185, 300))
-    screen.blit(COIN, (250, 170))
 
     
 def gametitle_draw(screen, cursor):

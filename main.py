@@ -6,6 +6,7 @@ import gameStatus
 import mine
 import enemy
 import gun
+import battleField
 import sys
 import os
 
@@ -23,9 +24,8 @@ class Main:
         clock = pygame.time.Clock() #clockオブジェクトの作成
         while True:
             clock.tick(60) #clockオブジェクトの更新
-            self.draw(screen)
+            self.update(screen)
             self.stateChange()
-            self.map.update(screen, self.mine)
             self.key_handler()
             pygame.display.update() #画面の作成
             
@@ -41,18 +41,22 @@ class Main:
         #デフォルトスプライトグループの登録
         mine.Mine.containers = self.all, self.collige
         map.Block.containers = self.all, self.blocks
+        enemy.Enemy.containers = self.all, self.collige
 
         #オブジェクトの作成
         self.map = map.Map("Data/MAP.map", self.all, SCR_RECT, GS=32)
-        self.mine = mine.Mine((100, 100), self.blocks, "Data/YELLOW_RIGHT.bmp")
+        self.mine = mine.Mine((200, 600), self.blocks, "Data/YELLOW_RIGHT.bmp")
+        
         #カーソルの初期位置を指定
 
 
-    def draw(self, screen):
+    def update(self, screen):
         if self.game_state == TITLE:
             pass
 
         elif self.game_state == PLAY:
+            battleField.generation()
+            self.map.update(screen, self.mine)
             self.map.draw()
 
         elif self.game_state == GAMEOVER:
@@ -74,11 +78,13 @@ class Main:
             #ゲーム終了後、スペースを押してゲーム状態をTITLEに
             if self.game_state == GAMEOVER or self.game_state == CLEAR:
                 if event.type == KEYDOWN:
-                    pass
+                    if event.key == K_SPACE:
+                        self.init_game()
+                        self.game_state = PLAY
 
     def stateChange(self):
         '''条件を満たしていれば、ゲーム状態を変更する'''
-        if self.mine.rect.y > 1500:
+        if self.mine.rect.y > 1000:
             self.game_state = GAMEOVER
 
     def init_mixer(self):
