@@ -32,9 +32,9 @@ class DiagonalBullet(Bullet1):
         self.direction = direction
     def move(self):
         self.rect.x += self.speed
-        if direction == 1:      #上向き
+        if self.direction == 1:      #上向き
             self.rect.y += 2
-        elif direction == 2:    #下向き
+        elif self.direction == 2:    #下向き
             self.rect.y -= 2
 
 
@@ -46,8 +46,18 @@ class MyBullet(Bullet1):
         elif types == 2:
             self.speed -= 3
 
-class Gun3Way:
+def gun3Way(pos, speed, types, imagePath):
+    bulletA = Bullet1(pos, speed, types, imagePath)
+    bulletB = DiagonalBullet(pos, speed, types, imagePath, 1)
+    bulletC = DiagonalBullet(pos, speed, types, imagePath, 2)
+    
+class Bomb(Bullet1):
+    GRAVITY = 0.3
     def __init__(self, pos, speed, types, imagePath):
-        bulletA = Bullet1(pos, speed, types, imagePath)
-        bulletB = DiagonalBullet(pos, speed, types, imagePath, 1)
-        bulletC = DiagonalBullet(pos, speed, types, imagePath, 2)
+        super().__init__(pos, speed, types, imagePath)
+        self.speedY = 0.1
+
+    def move(self):
+        self.rect.x += self.speed
+        self.speedY += self.GRAVITY
+        self.rect.y += int(self.speedY)

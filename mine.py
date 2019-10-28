@@ -10,7 +10,7 @@ class Mine(pygame.sprite.Sprite):
     MOVE_SPEED = 0.0    #移動速度
     JUMP_SPEED = 0.0    #ジャンプの速度
     ANIMCYCLE = 8    #アニメーション速度
-    GRAVITY = 0.2    #重力の大きさ
+    GRAVITY = 0.4    #重力の大きさ
     frame = 0    #経過フレーム数
     on_FLOOR = False    #床についているかどうか
     waittime = 11   #最初の待ち時間用
@@ -19,7 +19,7 @@ class Mine(pygame.sprite.Sprite):
     def __init__(self, startpos, blocks, imagePath):
         pygame.sprite.Sprite.__init__(self, self.containers)
         self.MOVE_SPEED = 3.0 #移動速度を設定
-        self.JUMP_SPEED = 8.0 #ジャンプ速度を設定
+        self.JUMP_SPEED = 12.0 #ジャンプ速度を設定
 
         self.images = dataLoad.split_images(imagePath, size=26) #右向き基準
         self.right_images = self.images

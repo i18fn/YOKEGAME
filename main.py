@@ -54,6 +54,7 @@ class Main:
 
         elif self.game_state == PLAY:
             battleField.generation()
+            self.collideBullets()
             self.map.update(screen, self.mine)
             self.map.draw()
 
@@ -103,6 +104,11 @@ class Main:
         if self.mine.rect.y > 1000:
             return 1
         return 0
+
+    def collideBullets(self):
+        collide = pygame.sprite.groupcollide(self.blocks, self.enemyBulletsCollige, False, True)
+        for enemy in collide.keys():
+            pass
 
     def init_mixer(self):
         pygame.mixer.quit()

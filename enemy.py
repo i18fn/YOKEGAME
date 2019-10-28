@@ -30,6 +30,18 @@ class Enemy(pygame.sprite.Sprite):
             if self.rect.midleft[0] > 1440:
                 self.kill()
             self.rect.x -= self.speed
+        self.gun()
+        
+    def gun(self):
         if not random.randrange(self.SHOT_PROB) and self.SHOT_CAPACITY != 0:
             gun.Bullet1(self.rect.topleft, self.speed, self.types, "Data/bullet1.bmp")
+            self.SHOT_CAPACITY -= 1
+
+class Enemy2(Enemy):
+    def __init__(self, startpos, speed, types, imagePath, capacity=3):
+        super().__init__(startpos, speed, types, imagePath, capacity=capacity)
+
+    def gun(self):
+        if not random.randrange(self.SHOT_PROB) and self.SHOT_CAPACITY != 0:
+            gun.Bomb(self.rect.topleft, self.speed, self.types, "Data/bullet1.bmp")
             self.SHOT_CAPACITY -= 1
