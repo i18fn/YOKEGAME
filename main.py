@@ -11,7 +11,7 @@ import sys
 import os
 
 SCR_RECT = Rect(0, 0, 1440, 810)
-TITLE, PLAY, GAMEOVER, CLEAR = (0, 1, 2, 3)
+TITLE, PLAY, GAMEOVER = (0, 1, 2)
 
 class Main:
     def __init__(self):
@@ -60,9 +60,6 @@ class Main:
 
         elif self.game_state == GAMEOVER:
             gameStatus.gameover_draw(screen)
-
-        elif self.game_state == CLEAR:
-            pass
         
     def key_handler(self):
         '''キー入力受付'''
@@ -75,7 +72,7 @@ class Main:
                     if event.key == K_SPACE:
                         self.init_game()
                         self.game_state = PLAY
-            if self.game_state == GAMEOVER or self.game_state == CLEAR:
+            if self.game_state == GAMEOVER:
                 if event.type == KEYDOWN:
                     if event.key == K_SPACE:
                         self.init_game()
