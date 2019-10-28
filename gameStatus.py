@@ -12,7 +12,7 @@ def gameover_draw(screen):
     screen.blit(GAME_OVER, (600, 400))
 
     
-def gametitle_draw(screen, cursor):
+def gametitle_draw(screen):
     '''タイトル画面の描画'''
     screen.fill((255, 255, 255)) #画面を白で塗りつぶす
     #フォントの作成
@@ -22,9 +22,7 @@ def gametitle_draw(screen, cursor):
     GAME_TITLE = gametitlefont.render("GAME", True, (0, 0, 0))
     GAME_START = gamestartmenufont.render("START", True, (0, 0, 0))
     GAME_EXIT = gamestartmenufont.render("QUIT", True, (0, 0, 0))
-    GAME_CURSOR = gamestartmenufont.render(">", True, (255, 0, 0))
     #文字の描画
     screen.blit(GAME_TITLE, (180, 70))
     screen.blit(GAME_START, (240, 330))
     screen.blit(GAME_EXIT, (255, 380))
-    screen.blit(GAME_CURSOR, (190, cursor))

@@ -21,8 +21,23 @@ class Bullet1(pygame.sprite.Sprite):
         elif self.types == 2:
             if self.rect.midleft[0] > 1440:
                 self.kill()
+        self.move()
+
+    def move(self):
         self.rect.x += self.speed
-    
+
+class DiagonalBullet(Bullet1):
+    def __init__(self, pos, speed, types, imagePath, direction):
+        super().__init__(pos, speed, types, imagePath)
+        self.direction = direction
+    def move(self):
+        self.rect.x += self.speed
+        if direction == 1:      #上向き
+            self.rect.y += 2
+        elif direction == 2:    #下向き
+            self.rect.y -= 2
+
+
 class MyBullet(Bullet1):
     def __init__(self, pos, speed, types, imagePath):
         super().__init__(pos, speed, types, imagePath)
@@ -30,5 +45,9 @@ class MyBullet(Bullet1):
             self.speed += 3
         elif types == 2:
             self.speed -= 3
-    def update(self):
-        super().update()
+
+class Gun3Way:
+    def __init__(self, pos, speed, types, imagePath):
+        bulletA = Bullet1(pos, speed, types, imagePath)
+        bulletB = DiagonalBullet(pos, speed, types, imagePath, 1)
+        bulletC = DiagonalBullet(pos, speed, types, imagePath, 2)

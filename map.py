@@ -73,5 +73,3 @@ class Map:
         offsetx = obj.rect.topleft[0] - self.SCR_RECT.width//2
         offsety = obj.rect.topleft[1] - self.SCR_RECT.height//2
         return offsetx, offsety
-                          
-

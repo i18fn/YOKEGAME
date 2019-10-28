@@ -13,8 +13,8 @@ class Mine(pygame.sprite.Sprite):
     GRAVITY = 0.2    #重力の大きさ
     frame = 0    #経過フレーム数
     on_FLOOR = False    #床についているかどうか
-    waittime = 11   #待ち時間用
-    guns_wait = 5   #弾丸発射の待ち時間
+    waittime = 11   #最初の待ち時間用
+    guns_wait = 10   #弾丸発射の待ち時間
     types = 1   #向いている方向(1:右向き, 2:左向き)
     def __init__(self, startpos, blocks, imagePath):
         pygame.sprite.Sprite.__init__(self, self.containers)
@@ -46,7 +46,6 @@ class Mine(pygame.sprite.Sprite):
         '''スプライトの更新'''
         #キー入力取得
         pressed_keys = pygame.key.get_pressed()
-        print(self.waittime)
         #左右移動
         if pressed_keys[K_RIGHT]:
             self.types = 1
