@@ -68,12 +68,12 @@ class Main:
                 sys.exit()
             if self.game_state == TITLE:
                 if event.type == KEYDOWN:
-                    if event.key == K_SPACE:
+                    if event.key == K_k:
                         self.init_game()
                         self.game_state = PLAY
             if self.game_state == GAMEOVER:
                 if event.type == KEYDOWN:
-                    if event.key == K_SPACE:
+                    if event.key == K_k:
                         self.init_game()
                         self.game_state = TITLE
 

@@ -4,7 +4,7 @@ import enemy
 import random
 
 def generation():
-    if random.randint(0,50) == 0:
+    if random.randint(0,80) == 0:
         posX = random.randint(0,1)*1440
         posY = random.randint(0,150)+500
         speed = random.randint(2,4)

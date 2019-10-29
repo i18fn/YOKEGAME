@@ -38,13 +38,13 @@ class Mine(pygame.sprite.Sprite):
 
     def update(self):
         pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[K_RIGHT]:
+        if pressed_keys[K_d]:
             self.types = 1
             self.image = self.right_image #画像を右向きに変える
             self.frame += 1 
             self.image = self.right_images[self.frame//self.ANIMCYCLE%2] #アニメーションの更新
             self.fpvx = self.MOVE_SPEED 
-        elif pressed_keys[K_LEFT]:
+        elif pressed_keys[K_a]:
             self.types = 2
             self.image = self.left_image #画像を左向きに変える
             self.frame += 1
@@ -53,7 +53,7 @@ class Mine(pygame.sprite.Sprite):
         else:
             self.fpvx = 0.0
 
-        if pressed_keys[K_UP]:
+        if pressed_keys[K_j]:
             if self.on_FLOOR:
                 self.fpvy = -self.JUMP_SPEED #上向きに初速度を与える
                 self.on_FLOOR = False
@@ -62,14 +62,14 @@ class Mine(pygame.sprite.Sprite):
                 self.fpvy = -self.JUMP_SPEED
                 self.jump_count += 1
         
-        if pressed_keys[K_SPACE] and self.waittime > self.guns_wait:
+        if pressed_keys[K_k] and self.waittime > self.guns_wait:
             gun.MyBullet(self.rect.topleft, self.MOVE_SPEED, self.types, "Data/bullet1.bmp")
             self.waittime = 0
         else:
             self.waittime += 1
 
         #シフトが押されたとき
-        if pressed_keys[K_LSHIFT] or pressed_keys[K_RSHIFT]:
+        if pressed_keys[K_l]:
             #移動速度を半分にし、アニメーション速度を二倍にする
             self.MOVE_SPEED = 1.5
             self.ANIMCYCLE = 16
