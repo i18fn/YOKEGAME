@@ -46,11 +46,6 @@ class MyBullet(Bullet1):
         elif types == 2:
             self.speed -= 3
 
-def gun3Way(pos, speed, types, imagePath):
-    bulletA = Bullet1(pos, speed, types, imagePath)
-    bulletB = DiagonalBullet(pos, speed, types, imagePath, 1)
-    bulletC = DiagonalBullet(pos, speed, types, imagePath, 2)
-    
 class Bomb(Bullet1):
     GRAVITY = 0.3
     def __init__(self, pos, speed, types, imagePath):
@@ -61,3 +56,8 @@ class Bomb(Bullet1):
         self.rect.x += self.speed
         self.speedY += self.GRAVITY
         self.rect.y += int(self.speedY)
+
+def gun3Way(pos, speed, types, imagePath):
+    bulletA = Bullet1(pos, speed, types, imagePath)
+    bulletB = DiagonalBullet(pos, speed, types, imagePath, 1)
+    bulletC = DiagonalBullet(pos, speed, types, imagePath, 2)

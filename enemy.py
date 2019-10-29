@@ -1,6 +1,5 @@
 import pygame
 from pygame.locals import *
-import character
 import dataLoad
 import battleField
 import random
@@ -38,6 +37,15 @@ class Enemy(pygame.sprite.Sprite):
             self.SHOT_CAPACITY -= 1
 
 class Enemy2(Enemy):
+    def __init__(self, startpos, speed, types, imagePath, capacity=3):
+        super().__init__(startpos, speed, types, imagePath, capacity=capacity)
+
+    def gun(self):
+        if not random.randrange(self.SHOT_PROB) and self.SHOT_CAPACITY != 0:
+            gun.gun3Way(self.rect.topleft, self.speed, self.types, "Data/bullet1.bmp")
+            self.SHOT_CAPACITY -= 1
+
+class Enemy3(Enemy):
     def __init__(self, startpos, speed, types, imagePath, capacity=3):
         super().__init__(startpos, speed, types, imagePath, capacity=capacity)
 

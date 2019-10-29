@@ -1,9 +1,7 @@
 import pygame
 from pygame.locals import *
 import dataLoad
-import character
 import gun
-import time
 
 class Mine(pygame.sprite.Sprite):
     '''自機クラス'''

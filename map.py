@@ -1,6 +1,5 @@
 import pygame
 import dataLoad
-import os
 
 class Block(pygame.sprite.Sprite):
     def __init__(self, pos, filePath, size):

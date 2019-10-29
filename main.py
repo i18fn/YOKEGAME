@@ -8,7 +8,6 @@ import enemy
 import gun
 import battleField
 import sys
-import os
 
 SCR_RECT = Rect(0, 0, 1440, 810)
 TITLE, PLAY, GAMEOVER = (0, 1, 2)
@@ -19,8 +18,8 @@ class Main:
         screen = pygame.display.set_mode(SCR_RECT.size)
         pygame.display.set_caption("GAME")
 
-        self.init_game()
         self.init_mixer()
+        self.init_game()
         clock = pygame.time.Clock()
         while True:
             clock.tick(60)
