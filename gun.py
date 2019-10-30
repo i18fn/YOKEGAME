@@ -42,9 +42,9 @@ class MyBullet(Bullet1):
     def __init__(self, pos, speed, types, imagePath):
         super().__init__(pos, speed, types, imagePath)
         if types == 1:
-            self.speed += 3
+            self.speed += 4
         elif types == 2:
-            self.speed -= 3
+            self.speed -= 4
 
 class Bomb(Bullet1):
     GRAVITY = 0.3

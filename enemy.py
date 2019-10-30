@@ -33,7 +33,7 @@ class Enemy(pygame.sprite.Sprite):
         
     def gun(self):
         if not random.randrange(self.SHOT_PROB) and self.SHOT_CAPACITY != 0:
-            gun.Bullet1(self.rect.topleft, self.speed, self.types, "Data/bullet1.bmp")
+            gun.Bullet1(self.rect.topleft, self.speed, self.types, "Data/bullet2.bmp")
             self.SHOT_CAPACITY -= 1
 
 class Enemy2(Enemy):
@@ -42,7 +42,7 @@ class Enemy2(Enemy):
 
     def gun(self):
         if not random.randrange(self.SHOT_PROB) and self.SHOT_CAPACITY != 0:
-            gun.gun3Way(self.rect.topleft, self.speed, self.types, "Data/bullet1.bmp")
+            gun.gun3Way(self.rect.topleft, self.speed, self.types, "Data/bullet2.bmp")
             self.SHOT_CAPACITY -= 1
 
 class Enemy3(Enemy):
@@ -51,5 +51,5 @@ class Enemy3(Enemy):
 
     def gun(self):
         if not random.randrange(self.SHOT_PROB) and self.SHOT_CAPACITY != 0:
-            gun.Bomb(self.rect.topleft, self.speed, self.types, "Data/bullet1.bmp")
+            gun.Bomb(self.rect.topleft, self.speed, self.types, "Data/bullet3.bmp")
             self.SHOT_CAPACITY -= 1

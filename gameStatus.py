@@ -1,15 +1,18 @@
 import pygame
 from pygame.locals import *
 
-def gameover_draw(screen):
+def gameover_draw(screen, score):
     '''ゲームオーバー画面を表示'''
     #screen.fill((255, 255, 255)) 画面を白で塗りつぶす
     #フォントの作成
     gameoverfont = pygame.font.SysFont(None, 180)
+    scorefont = pygame.font.SysFont(None, 140)
     #文字の画像(Surface)の作成
     GAME_OVER = gameoverfont.render("GAME OVER", True, (0, 0, 0))
+    SCORE = scorefont.render(("YOUR SCORE : " + str(score)), True, (0, 0, 0))
     #文字の描画
-    screen.blit(GAME_OVER, (600, 400))
+    screen.blit(GAME_OVER, (300, 300))
+    screen.blit(SCORE, (200, 450))
 
     
 def gametitle_draw(screen):

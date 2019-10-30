@@ -7,12 +7,14 @@ import mine
 import enemy
 import gun
 import battleField
+import scorecount
 import sys
 
 SCR_RECT = Rect(0, 0, 1440, 810)
 TITLE, PLAY, GAMEOVER = (0, 1, 2)
 
 class Main:
+    count = 0
     def __init__(self):
         pygame.init()
         screen = pygame.display.set_mode(SCR_RECT.size)
@@ -30,6 +32,7 @@ class Main:
             
     def init_game(self):
         '''ゲームの初期化'''
+        self.count = 0
         self.game_state = TITLE
         self.all = pygame.sprite.RenderUpdates()
         self.mineCollige = pygame.sprite.Group()
@@ -46,6 +49,7 @@ class Main:
 
         self.map = map.Map("Data/MAP.map", self.all, SCR_RECT, GS=32)
         self.mine = mine.Mine((200, 600), self.blocks, "Data/YELLOW.bmp")
+        self.scorecount = scorecount.ScoreCount()
 
     def update(self, screen):
         if self.game_state == TITLE:
@@ -56,9 +60,13 @@ class Main:
             self.collideBullets()
             self.map.update(screen, self.mine)
             self.map.draw()
+            self.scorecount.draw(screen)
+            time05 = pygame.time.get_ticks() % 30
+            if  (time05 >= 27 and time05 <= 30) or (time05 >= 0 and time05 <= 3):
+                self.scorecount.addScore(1)
 
         elif self.game_state == GAMEOVER:
-            gameStatus.gameover_draw(screen)
+            gameStatus.gameover_draw(screen, self.scorecount.getScore())
         
     def key_handler(self):
         '''キー入力受付'''
@@ -68,12 +76,12 @@ class Main:
                 sys.exit()
             if self.game_state == TITLE:
                 if event.type == KEYDOWN:
-                    if event.key == K_k:
+                    if event.key == K_SPACE:
                         self.init_game()
                         self.game_state = PLAY
             if self.game_state == GAMEOVER:
                 if event.type == KEYDOWN:
-                    if event.key == K_k:
+                    if event.key == K_SPACE:
                         self.init_game()
                         self.game_state = TITLE
 
@@ -82,7 +90,7 @@ class Main:
         if self.liveOrDie():
             self.game_state = GAMEOVER
         if self.shootDown():
-            print("Good!")
+            self.scorecount.addScore(30)
 
     def shootDown(self):
         collide = pygame.sprite.groupcollide(self.mineBulletsCollige, self.enemyCollige, True, True)
