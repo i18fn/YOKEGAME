@@ -15,6 +15,7 @@ TITLE, PLAY, GAMEOVER = 0, 1, 2
 
 class Main:
     count = 0
+    highscore = 0
     def __init__(self):
         pygame.init()
         screen = pygame.display.set_mode(SCR_RECT.size)
@@ -54,7 +55,7 @@ class Main:
 
     def update(self, screen):
         if self.game_state == TITLE:
-            gameStatus.gametitle_draw(screen, self.cursor)
+            gameStatus.gametitle_draw(screen, self.cursor, self.highscore)
 
         elif self.game_state == PLAY:
             battleField.generation()
@@ -85,13 +86,14 @@ class Main:
                         elif self.cursor == 610:
                             pygame.quit()
                             sys.exit()
-                    if event.key == K_UP:
+                    if event.key == K_UP and self.cursor != 520:
                         self.cursor -= 90
-                    if event.key == K_DOWN:
+                    if event.key == K_DOWN and self.cursor != 610:
                         self.cursor += 90
             if self.game_state == GAMEOVER:
                 if event.type == KEYDOWN:
                     if event.key == K_SPACE:
+                        self.highscore = self.scorecount.getScore()
                         self.init_game()
                         self.game_state = TITLE
 

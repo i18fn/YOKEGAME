@@ -1,11 +1,12 @@
 import pygame
 from pygame.locals import *
     
-def gametitle_draw(screen, cursor_pos):
+def gametitle_draw(screen, cursor_pos, highscore):
     screen.fill((255, 255, 255))
 
     gametitlefont = pygame.font.SysFont(None, 180)
     gamestartmenufont = pygame.font.SysFont(None, 100)
+    highscorefont = pygame.font.SysFont(None, 70)
 
     if cursor_pos == 520:
         GAME_START_COLOR = (255, 0, 0)
@@ -19,9 +20,11 @@ def gametitle_draw(screen, cursor_pos):
     GAME_TITLE = gametitlefont.render("YOKERO", True, (0, 0, 0))
     GAME_START = gamestartmenufont.render("START", True, GAME_START_COLOR)
     GAME_EXIT = gamestartmenufont.render("QUIT", True, GAME_EXIT_COLOR)
+    HIGHSCORE = highscorefont.render(("HIGH SCORE : " + str(highscore)), True, (0, 0, 0))
     CURSOR = gamestartmenufont.render(">", True, (0, 0, 0))
 
     screen.blit(GAME_TITLE, (400, 150))
+    screen.blit(HIGHSCORE, (480, 300))
     screen.blit(GAME_START, (550, 530))
     screen.blit(GAME_EXIT, (575, 620))
     screen.blit(CURSOR, (500, cursor_pos))

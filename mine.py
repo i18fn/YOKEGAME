@@ -5,7 +5,7 @@ import gun
 
 class Mine(pygame.sprite.Sprite):
     '''自機クラス'''
-    MOVE_SPEED = 5    #移動速度
+    MOVE_SPEED = 6    #移動速度
     JUMP_SPEED = 10.0    #ジャンプの速度
     ANIMCYCLE = 8    #アニメーション速度
     GRAVITY = 0.4    #重力の大きさ
