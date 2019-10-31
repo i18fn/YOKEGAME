@@ -1,31 +1,35 @@
 import pygame
 from pygame.locals import *
+    
+def gametitle_draw(screen, cursor_pos):
+    screen.fill((255, 255, 255))
+
+    gametitlefont = pygame.font.SysFont(None, 180)
+    gamestartmenufont = pygame.font.SysFont(None, 100)
+
+    if cursor_pos == 520:
+        GAME_START_COLOR = (255, 0, 0)
+    else:
+        GAME_START_COLOR = (0, 0, 0)
+    if cursor_pos == 610:
+        GAME_EXIT_COLOR = (255, 0, 0)
+    else:
+        GAME_EXIT_COLOR = (0, 0, 0)
+
+    GAME_TITLE = gametitlefont.render("YOKERO", True, (0, 0, 0))
+    GAME_START = gamestartmenufont.render("START", True, GAME_START_COLOR)
+    GAME_EXIT = gamestartmenufont.render("QUIT", True, GAME_EXIT_COLOR)
+    CURSOR = gamestartmenufont.render(">", True, (0, 0, 0))
+
+    screen.blit(GAME_TITLE, (400, 150))
+    screen.blit(GAME_START, (550, 530))
+    screen.blit(GAME_EXIT, (575, 620))
+    screen.blit(CURSOR, (500, cursor_pos))
 
 def gameover_draw(screen, score):
-    '''ゲームオーバー画面を表示'''
-    #screen.fill((255, 255, 255)) 画面を白で塗りつぶす
-    #フォントの作成
     gameoverfont = pygame.font.SysFont(None, 180)
     scorefont = pygame.font.SysFont(None, 140)
-    #文字の画像(Surface)の作成
     GAME_OVER = gameoverfont.render("GAME OVER", True, (0, 0, 0))
     SCORE = scorefont.render(("YOUR SCORE : " + str(score)), True, (0, 0, 0))
-    #文字の描画
     screen.blit(GAME_OVER, (300, 300))
     screen.blit(SCORE, (200, 450))
-
-    
-def gametitle_draw(screen):
-    '''タイトル画面の描画'''
-    screen.fill((255, 255, 255)) #画面を白で塗りつぶす
-    #フォントの作成
-    gametitlefont = pygame.font.SysFont(None, 120)
-    gamestartmenufont = pygame.font.SysFont(None, 60)
-    #文字の画像(Surface)の作成
-    GAME_TITLE = gametitlefont.render("GAME", True, (0, 0, 0))
-    GAME_START = gamestartmenufont.render("START", True, (0, 0, 0))
-    GAME_EXIT = gamestartmenufont.render("QUIT", True, (0, 0, 0))
-    #文字の描画
-    screen.blit(GAME_TITLE, (180, 70))
-    screen.blit(GAME_START, (240, 330))
-    screen.blit(GAME_EXIT, (255, 380))
