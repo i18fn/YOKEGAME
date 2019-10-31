@@ -13,7 +13,7 @@ class Mine(pygame.sprite.Sprite):
     frame = 0    #経過フレーム数
     on_FLOOR = False    #床についているかどうか
     waittime = 11   #最初の待ち時間用
-    guns_wait = 8   #弾丸発射の待ち時間
+    guns_wait = 7   #弾丸発射の待ち時間
     types = 1   #向いている方向(1:右向き, 2:左向き)
     def __init__(self, startpos, blocks, imagePath):
         pygame.sprite.Sprite.__init__(self, self.containers)

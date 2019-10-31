@@ -12,6 +12,7 @@ import sys
 
 SCR_RECT = Rect(0, 0, 1440, 810)
 TITLE, PLAY, GAMEOVER = 0, 1, 2
+SAVEFILE = "Data/save"
 
 class Main:
     count = 0
@@ -41,6 +42,7 @@ class Main:
         self.mineBulletsCollige = pygame.sprite.Group()
         self.enemyBulletsCollige = pygame.sprite.Group()
         self.blocks = pygame.sprite.Group()
+        self.loadSaveData()
 
         mine.Mine.containers = self.all, self.mineCollige
         map.Block.containers = self.all, self.blocks
@@ -75,8 +77,7 @@ class Main:
         '''キー入力受付'''
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
-                pygame.quit()
-                sys.exit()
+                self.quit()
             if self.game_state == TITLE:
                 if event.type == KEYDOWN:
                     if event.key == K_SPACE:
@@ -84,8 +85,7 @@ class Main:
                             self.init_game()
                             self.game_state = PLAY
                         elif self.cursor == 610:
-                            pygame.quit()
-                            sys.exit()
+                            self.quit()
                     if event.key == K_UP and self.cursor != 520:
                         self.cursor -= 90
                     if event.key == K_DOWN and self.cursor != 610:
@@ -93,7 +93,8 @@ class Main:
             if self.game_state == GAMEOVER:
                 if event.type == KEYDOWN:
                     if event.key == K_SPACE:
-                        self.highscore = self.scorecount.getScore()
+                        if self.highscore < self.scorecount.getScore():
+                            self.highscore = self.scorecount.getScore()
                         self.init_game()
                         self.game_state = TITLE
 
@@ -129,6 +130,18 @@ class Main:
     def init_mixer(self):
         pygame.mixer.quit()
         pygame.mixer.init(buffer=1024)
+
+    def loadSaveData(self):
+        with open(SAVEFILE, mode='r') as file:
+            f = file.readline()
+            if self.highscore < int(f):
+                self.highscore = int(f)
+
+    def quit(self):
+        with open(SAVEFILE, mode='w') as file:
+            f = file.write(str(self.highscore))
+        pygame.quit()
+        sys.exit()
 
 if __name__ == "__main__":
     Main()
